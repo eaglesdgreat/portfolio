@@ -1,11 +1,20 @@
 const jwt = require('jsonwebtoken')
 const expressJwt = require('express-jwt')
+const crypto = require('crypto')
 
-const db = require('./../models/user')
 const config = require('./../config/config')
 
+function encryptPassword(value, salt) {
+  if (!value) return ''
+  try {
+    return crypto.createHmac('sha1', salt).update(value).digest('hex')
+  } catch (err) {
+    return ''
+  }
+}
+
 function isAuthenticate(plainText, salt) {
-  return db.encryptPassword(plainText, salt)
+  return encryptPassword(plainText, salt)
 }
 
 function signin(req, res) {
@@ -65,4 +74,5 @@ module.exports = {
   signin,
   requiredSignIn,
   hasAuthorization,
+  encryptPassword,
 }

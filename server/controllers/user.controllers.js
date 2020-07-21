@@ -1,23 +1,9 @@
 const _ = require('lodash')
-const crypto = require('crypto')
 
-const db = require('./../models/user')
-
-// function encryptPassword(value) {
-//   function makeSalt() {
-//     return Math.round((new Date().valueOf() * Math.random())) + ''
-//   }
-//   if (!value) return ''
-//   try {
-//     return crypto.createHmac('sha1', makeSalt()).update(value).digest('hex')
-//   } catch (err) {
-//     return ''
-//   }
-// }
+const { User } = require('./../models')
 
 function createUser(req, res) {
-  // req.body.password = encryptPassword(req.body.password)
-  db.User.create(req.body)
+  User.create(req.body)
     .then((result) => {
       return res.status(200).send({
         message: `${result.firstName} account created successfully`
@@ -31,7 +17,7 @@ function createUser(req, res) {
 }
 
 function listUser(req, res) {
-  db.User.findAll()
+  User.findAll()
     .then((result) => {
       return res.status(200).json(result)
     })
@@ -43,7 +29,7 @@ function listUser(req, res) {
 }
 
 function userById(req, res, next, id) {
-  db.User.findOne({ where: { userId: id } })
+  User.findOne({ where: { userId: id } })
     .then((user) => {
       if (!user) {
         return res.status(401).json({
@@ -67,7 +53,7 @@ function getUser(req, res) {
 function updateUser(req, res) {
  let user = req.profile
  user = _.extend(user, req.body)
- db.User.update(user, { where : { userId: req.profile.userId } })
+ User.update(user, { where : { userId: req.profile.userId } })
   .then((result) => {
     result.hashed_password = undefined
     return res.status(200).json(result)
@@ -81,7 +67,7 @@ function updateUser(req, res) {
 
 function deleteUser(req, res) {
   const user = req.profile
-  db.User.destroy({ where: {userId: user.userId } })
+  User.destroy({ where: {userId: user.userId } })
     .then((result) => {
       return res.status(200).json({
         message: `Your account has been deleted`
