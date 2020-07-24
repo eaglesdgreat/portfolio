@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken')
 const expressJwt = require('express-jwt')
 const crypto = require('crypto')
+const { User } = require('./../models')
 
 const config = require('./../config/config')
 
@@ -18,16 +19,17 @@ function isAuthenticate(plainText, salt) {
 }
 
 function signin(req, res) {
-  db.User.findOne(req.body, { where: { email: req.body.email } })
+  User.findOne(req.body, { where: { email: req.body.email } })
     .then((user) => {
+      console.log(user.userId)
       if (!user) {
         return res.status(401).json({
           error: 'Invalid email Address',
         })
       }
 
-      if (!(isAuthenticate(req.body.password, user.salt) === user.hashed_password)) {
-        console.log(user.hashed_password+ ' and '+ isAuthenticate(req.body.password, user.salt))
+      if (!(isAuthenticate(req.body.password, user.salt) === user.password)) {
+        console.log(user.password+ ' and '+ isAuthenticate(req.body.password, user.salt))
         return res.status(401).json({
           error: 'Email and Password do not match',
         })

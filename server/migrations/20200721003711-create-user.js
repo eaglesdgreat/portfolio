@@ -43,13 +43,15 @@ module.exports = {
       salt: {
         type: Sequelize.STRING,
         allowNull: false,
+        set: function () {
+          this.setDataValue('salt', makeSalt())
+        },
         comment: 'Salt generated for hashing password'
       },
       password: {
         type: Sequelize.STRING,
         allowNull: false,
         set: function (pass) {
-          this.setDataValue('salt', makeSalt())
           this.setDataValue('password', encryptPassword(pass, this.getDataValue('salt')))
         },
         validate: {

@@ -59,10 +59,10 @@ module.exports = (sequelize, DataTypes) => {
     password: {
       type: DataTypes.STRING,
       allowNull: false,
-      comment: 'Your firstName is required',
+      comment: 'hashed password store in the database',
       set: function (pass) {
         this.setDataValue('salt', makeSalt())
-        this.setDataValue('hashed_password', encryptPassword(pass, this.getDataValue('salt')))
+        this.setDataValue('password', encryptPassword(pass, this.getDataValue('salt')))
       },
       validate: {
         isLongEnough: function (pass) {
