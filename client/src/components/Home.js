@@ -1,5 +1,6 @@
 // import bootstrap from 'bootstrap'
 import React, { Component } from 'react'
+import author from './../static/author.jpg'
 
 class Home extends Component {
   // constructor(props) {
@@ -14,7 +15,7 @@ class Home extends Component {
     return (
       <div>
         {/* <!-- Hero Section--> */}
-        <section class="hero bg-cover bg-center mt-5" id="hero" style={{ background: 'url(./../static/author.jpg)' }}>
+        <section class="hero bg-cover bg-center mt-5" id="hero" style={{ background: author }}>
           <div class="container py-5 my-5 index-forward">
             <div class="row">
               <div class="col-md-8 text-white">
