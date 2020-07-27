@@ -26,4 +26,13 @@ module.exports = {
   env: process.env.NODE_ENV || 'development',
   port: process.env.PORT || 4000,
   jwtSecret: process.env.JWT_SECRET || 'VIN FA5B 3EC1 8452 8381 663',
+  emailFrom: process.env.EMAIL_FROM || 'okponobiemmanuel@gmail.com',
+  smtpOptions: {
+    host: '[ENTER YOUR OWN SMTP OPTIONS OR CREATE FREE TEST ACCOUNT IN ONE CLICK AT https://ethereal.email/]',
+    port: 587,
+    auth: {
+      user: '',
+      pass: '',
+    },
+  }
 }

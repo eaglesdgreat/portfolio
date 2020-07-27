@@ -66,6 +66,24 @@ module.exports = {
         },
         comment: 'hashed password store in the database',
       },
+      title: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        comment: 'Title of position',
+      },
+      role: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        comment: 'Role either Admin or User',
+      },
+      verifiedToken: { type: Sequelize.STRING },
+      verified: { type: Sequelize.DATE },
+      resetToken: {
+        type: Sequelize.STRING,
+        token: { type: Sequelize.STRING },
+        expires: { type: Sequelize.DATE },
+      },
+      passwordReset: { type: Sequelize.DATE },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

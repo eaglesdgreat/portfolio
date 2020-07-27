@@ -61,13 +61,20 @@ const requiredSignIn = expressJwt({
   userProperty: 'auth',
 })
 
-function hasAuthorization(req, res, next) {
+function hasAuthorization(req, res, next, roles = []) {
+  // roles param can be a single role string (e.g. Role.User or 'User') 
+  // or an array of roles (e.g. [Role.Admin, Role.User] or ['Admin', 'User'])
+  if (typeof roles === 'string') {
+    roles = [roles]
+  }
+
   const authorized = req.profile && req.auth && req.profile.userId === req.auth._id
-  if(!authorized){
+  if(!authorized || (roles.length && !roles.includes(req.profile.role))){
     return res.status(401).json({
       message: 'User not authorized',
     })
   }
+  req.auth.role = req.profile.role
   next()
   return authorized
 }

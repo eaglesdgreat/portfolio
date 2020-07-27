@@ -5,10 +5,12 @@ const cors = require('cors')
 const helmet = require('helmet')
 const compression = require('compression')
 const path = require('path')
+
 const sequelize = require('./config/db.config')
 const config = require('./config/config')
 const userRoute = require('./routes/user.routes')
 const authRoute = require('./routes/auth.routes')
+const errorHandler = require('./_helpers/error.handler')
 
 // Initializing express app
 const app = express()
@@ -38,6 +40,8 @@ app.use('/', authRoute)
 app.get('/', (req, res) => {
   res.send('Initial Page')
 })
+
+app.use(errorHandler)
 
 app.listen(config.port, (err) => {
   if (err) { console.log(err) }

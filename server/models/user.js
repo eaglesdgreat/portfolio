@@ -54,7 +54,7 @@ module.exports = (sequelize, DataTypes) => {
     salt: {
       type: DataTypes.STRING,
       allowNull: false,
-      comment: 'Salt generated for hashing password'
+      comment: 'Salt generated for hashing password',
     },
     password: {
       type: DataTypes.STRING,
@@ -75,6 +75,24 @@ module.exports = (sequelize, DataTypes) => {
         },
       }
     },
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      comment: 'Title of position',
+    },
+    role: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      comment: 'Role either Admin or User',
+    },
+    verifiedToken: { type: DataTypes.STRING },
+    verified: { type: DataTypes.DATE },
+    resetToken: {
+      type: DataTypes.STRING,
+      token: { type: DataTypes.STRING },
+      expires: { type: DataTypes.DATE },
+    },
+    passwordReset: { type: DataTypes.DATE },
   }, {
     sequelize,
     modelName: 'User',
