@@ -1,0 +1,35 @@
+export interface IImagesProps {
+  email: string;
+  mobile: string;
+  api: string;
+  cpp: string;
+  css: string;
+  figma: string;
+  flutter: string;
+  git: string;
+  graphql: string;
+  html: string;
+  javascript: string;
+  mu5: string;
+  node: string;
+  python: string;
+  react: string;
+  redux: string;
+  sass: string;
+  typescript: string;
+  vue: string;
+  about01: string;
+  about02: string;
+  about03: string;
+  about04: string;
+  profile: string;
+  circle: string;
+  logo: string;
+  adidas: string;
+  amazon: string;
+  asus: string;
+  bolt: string;
+  nb: string;
+  skype: string;
+  spotify: string;
+}
