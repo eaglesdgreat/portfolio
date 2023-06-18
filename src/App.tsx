@@ -4,15 +4,15 @@ import {
   About,
   Skills,
   Testimonials,
-  Works,
+  Works
 } from "pages";
 import {
   Footer,
   Header,
-  NavBar,
+  NavBar
 } from "layout"
 
-function App() {
+function App () {
   return (
     <div className="app">
       <NavBar />

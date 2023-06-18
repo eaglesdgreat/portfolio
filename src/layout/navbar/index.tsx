@@ -8,13 +8,12 @@ import { useState } from "react";
 
 const variants = {
   open: { opacity: 1, x: 0 },
-  closed: { opacity: 0, x: "100%" },
+  closed: { opacity: 0, x: "100%" }
 }
-
 
 const NavBar = () => {
   const [toggle, setToggle] = useState(false)
-  const navList = ["home", "about", "work", "skills", "contact"];
+  const navList = ["home", "about", "work", "skills", "testimonial", "contact"];
 
   return (
     <nav className="app__navbar">
@@ -34,19 +33,19 @@ const NavBar = () => {
       </ul>
 
       <div className="app__navbar--menu">
-        <HiMenuAlt4 onClick={() => setToggle(prev => !prev)} />
+        <HiMenuAlt4 onClick={() => { setToggle(prev => !prev) }} />
 
         {
           <motion.nav
             animate={toggle ? "open" : "closed"}
             variants={variants}
           >
-            <HiX onClick={() => setToggle(prev => !prev)} />
+            <HiX onClick={() => { setToggle(prev => !prev) }} />
             <ul>
               {
                 navList.map((item: string, i) => (
                   <li key={`link-${item}-${i}`}>
-                    <a href={`#${item}`} onClick={() => setToggle(prev => !prev)}>{item}</a>
+                    <a href={`#${item}`} onClick={() => { setToggle(prev => !prev) }}>{item}</a>
                   </li>
                 ))
               }
